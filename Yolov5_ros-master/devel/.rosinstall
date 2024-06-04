@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/yami/Yolov5_ros-master/devel/setup.sh

@@ -1,0 +1,32 @@
+chmod: 无法访问 '/dev/ttyUSB0': 没有那个文件或目录
+[ERROR] [1717498688.291837]: Error opening serial: [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[ERROR] [1717498691.296569]: Error opening serial: [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[ERROR] [1717498694.300933]: Error opening serial: [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[ERROR] [1717498697.304956]: Error opening serial: [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+[ERROR] [1717498700.308814]: Error opening serial: [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+Traceback (most recent call last):
+  File "/home/yami/anaconda3/envs/yolo/lib/python3.8/site-packages/serial/serialposix.py", line 322, in open
+    self.fd = os.open(self.portstr, os.O_RDWR | os.O_NOCTTY | os.O_NONBLOCK)
+FileNotFoundError: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/ros/noetic/lib/python3/dist-packages/rosserial_python/SerialClient.py", line 374, in __init__
+    self.port = Serial(port, baud, timeout=self.timeout, write_timeout=10)
+  File "/home/yami/anaconda3/envs/yolo/lib/python3.8/site-packages/serial/serialutil.py", line 244, in __init__
+    self.open()
+  File "/home/yami/anaconda3/envs/yolo/lib/python3.8/site-packages/serial/serialposix.py", line 325, in open
+    raise SerialException(msg.errno, "could not open port {}: {}".format(self._port, msg))
+serial.serialutil.SerialException: [Errno 2] could not open port /dev/ttyUSB0: [Errno 2] No such file or directory: '/dev/ttyUSB0'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/opt/ros/noetic/lib/python3/dist-packages/rospy/core.py", line 572, in signal_shutdown
+    h()
+  File "/opt/ros/noetic/lib/python3/dist-packages/rosserial_python/SerialClient.py", line 354, in shutdown
+    self.txStopRequest()
+  File "/opt/ros/noetic/lib/python3/dist-packages/rosserial_python/SerialClient.py", line 422, in txStopRequest
+    self.port.flushInput()
+AttributeError: 'SerialClient' object has no attribute 'port'

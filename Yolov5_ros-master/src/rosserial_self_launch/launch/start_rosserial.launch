@@ -1,0 +1,23 @@
+<launch>
+    <!-- 根据实际情况修改arg标签中的default属性值即可 -->
+    <!-- 
+        port:端口名称
+        这里根据实际端口名称进行设置，一般为/dev/ttyUSB0或/dev/ttyACM0。
+     -->
+    <arg name="port_name" default="/dev/ttyUSB0" />
+    <!-- 
+        baud_value:波特率
+        这里根据单片机的与ROS相连串口端口的波特率进行设置，常用的为115200。
+     -->
+    <arg name="baud_value" default="115200" />
+    <!-- 
+        serial_node:串口节点名称
+        串口节点可以自由更改
+        若是多个单片机通过rosserial通讯时，节点名称会冲突，必须修改；否则保持默认即可。
+     -->
+    <arg name="serial_node" default="serial_node" />
+    <node pkg="rosserial_python" type="serial_node.py" name="$(arg serial_node)" output="screen">
+        <param name="port" value="$(arg port_name)" />
+        <param name="baud" value="$(arg baud_value)" />
+    </node>
+</launch>

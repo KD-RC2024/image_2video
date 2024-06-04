@@ -1,0 +1,8 @@
+prefix=/home/yami/Yolov5_ros-master/install
+
+Name: rosserial_self_launch
+Description: Description of rosserial_self_launch
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

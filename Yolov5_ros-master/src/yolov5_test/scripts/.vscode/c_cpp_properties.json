@@ -1,0 +1,26 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/yami/Yolov5_ros-master/devel/include/**",
+        "/opt/ros/noetic/include/**",
+        "/home/yami/Yolov5_ros-master/src/ddynamic_reconfigure/include/**",
+        "/home/yami/Yolov5_ros-master/src/realsense-ros/realsense2_camera/include/**",
+        "/home/yami/Yolov5_ros-master/src/rosserial_self_launch/include/**",
+        "/home/yami/Yolov5_ros-master/src/yolov5_ros/include/**",
+        "/home/yami/Yolov5_ros-master/src/yolov5_test/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
