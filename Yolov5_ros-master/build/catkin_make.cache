@@ -1,2 +1,0 @@
-ddynamic_reconfigure:realsense-ros/realsense2_camera:realsense-ros/realsense2_description:rosserial_self_launch:yolov5_ros:yolov5_ros_msgs:yolov5_test
--DCMAKE_BUILD_TYPE=RelWithDebInfo -DCATKIN_DEVEL_PREFIX=/home/yami/Yolov5_ros-master/devel -DCMAKE_INSTALL_PREFIX=/home/yami/Yolov5_ros-master/install -G Unix Makefiles

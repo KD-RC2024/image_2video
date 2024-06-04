@@ -88,27 +88,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(first_cam src/first_cam.cpp)
-add_executable(second_cam src/second_cam.cpp)
-add_executable(third_cam src/third_cam.cpp)
-add_executable(forth_cam src/forth_cam.cpp)
-add_executable(cam_5 src/cam_5.cpp)
-add_executable(test6 src/test6.cpp)
-add_executable(test7 src/test7.cpp)
-add_executable(test8 src/test8.cpp)
-add_executable(red src/red.cpp)
-add_executable(blue src/blue.cpp)
 add_executable(red_or_blue src/red_or_blue.cpp)
-add_dependencies(first_cam yolov5_ros_msgs_generate_messages_cpp)
-add_dependencies(second_cam yolov5_ros_msgs_generate_messages_cpp)
-add_dependencies(third_cam yolov5_ros_msgs_generate_messages_cpp)
-add_dependencies(forth_cam yolov5_ros_msgs_generate_messages_cpp)
-add_dependencies(cam_5 yolov5_ros_msgs_generate_messages_cpp)
-add_dependencies(test6 yolov5_ros_msgs_generate_messages_cpp)
-add_dependencies(test7 yolov5_ros_msgs_generate_messages_cpp)
-add_dependencies(test8 yolov5_ros_msgs_generate_messages_cpp)
-add_dependencies(red yolov5_ros_msgs_generate_messages_cpp)
-add_dependencies(blue yolov5_ros_msgs_generate_messages_cpp)
 add_dependencies(red_or_blue yolov5_ros_msgs_generate_messages_cpp)
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -121,45 +101,9 @@ add_dependencies(red_or_blue yolov5_ros_msgs_generate_messages_cpp)
 # add_dependencies( ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(first_cam
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(second_cam
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(third_cam
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(forth_cam
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(cam_5
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(test6
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(test7
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(test8
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(red
-  ${catkin_LIBRARIES}
-)
-target_link_libraries(blue
-  ${catkin_LIBRARIES}
-)
 target_link_libraries(red_or_blue
   ${catkin_LIBRARIES}
 )
-target_link_libraries(second_cam ${OpenCV_LIBS})
-target_link_libraries(third_cam ${OpenCV_LIBS})
-target_link_libraries(cam_5 ${OpenCV_LIBS})
-target_include_directories(second_cam PRIVATE ${OpenCV_INCLUDE_DIRS})
-target_include_directories(third_cam PRIVATE ${OpenCV_INCLUDE_DIRS})
-target_include_directories(cam_5 PRIVATE ${OpenCV_INCLUDE_DIRS})
 #############
 ## Install ##
 #############

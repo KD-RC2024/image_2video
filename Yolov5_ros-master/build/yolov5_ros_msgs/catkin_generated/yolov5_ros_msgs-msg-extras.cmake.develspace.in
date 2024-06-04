@@ -1,2 +1,0 @@
-set(yolov5_ros_msgs_MESSAGE_FILES "/home/yami/Yolov5_ros-master/src/yolov5_ros_msgs/msg/BoundingBox.msg;/home/yami/Yolov5_ros-master/src/yolov5_ros_msgs/msg/BoundingBoxes.msg;/home/yami/Yolov5_ros-master/src/yolov5_ros_msgs/msg/port_serial.msg;/home/yami/Yolov5_ros-master/src/yolov5_ros_msgs/msg/X_Y_ARG.msg;/home/yami/Yolov5_ros-master/src/yolov5_ros_msgs/msg/M.msg")
-set(yolov5_ros_msgs_SERVICE_FILES "")

@@ -1,8 +1,0 @@
-prefix=/home/yami/Yolov5_ros-master/devel
-
-Name: yolov5_test
-Description: Description of yolov5_test
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: roscpp rospy std_msgs yolov5_ros_msgs cv_bridge sensor_msgs image_transport
