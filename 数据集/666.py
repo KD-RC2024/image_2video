@@ -10,12 +10,12 @@ import os
     # 这里的idx是序号
     # 绘制txt文件
 if __name__ == "__main__":
-    # 图片的路径
-    image_dir = "/home/yami/2024_image2/5.24/images"
+    # 图片的路径 /home/yami/image_2video/数据集/exchange/images
+    image_dir = "/home/yami/image_2video/数据集/exchange/images"
     # 存放txt的路径
-    label_dir = "/home/yami/2024_image2/5.24/labels/"
+    label_dir = "/home/yami/image_2video/数据集/exchange/labels/"
     yolov5_path = "/home/yami/Yolov5_ros-master/src/yolov5_ros/yolov5"
-    weight_path = "/home/yami/Yolov5_ros-master/src/yolov5_ros/weights/weightR/best_100.pt"
+    weight_path = "/home/yami/Yolov5_ros-master/src/yolov5_ros/weights/weightR/best2_200.pt"
     conf = 0.65
     iou = 0.7
     model = torch.hub.load(yolov5_path, 'custom', path = weight_path, source = 'local')
@@ -25,7 +25,7 @@ if __name__ == "__main__":
 
     list_image = os.listdir(image_dir)
 
-    for idx in range(1300, 1614):
+    for idx in range(1, 1001):
         join_path = image_dir + "/" + str(idx) + ".jpg"
         color_image = cv2.imread(join_path)
         color_image = cv2.cvtColor(color_image, cv2.COLOR_BGR2RGB)
@@ -43,10 +43,10 @@ if __name__ == "__main__":
         # boundingBox.Class = box[-1]
         # out_file.write("{:} {:.6f} {:.6f} {:.6f} {:.6f} ".format(cls_id, *box) + '\n')
             if box[-1] == 'basket':
-                xmax = np.int64(box[0] + box[2]) / 2560   # 640 * 2  2560
-                ymax = np.int64(box[3] + box[1]) / 1440  # 480 * 2  1440
-                xmin = np.int64(box[2] - box[0]) / 1280 # 640      1280
-                ymin = np.int64(box[3] - box[1]) /  720 # 480      720
+                xmax = np.int64(box[0] + box[2]) / 3840   # 640 * 2  2560 3960
+                ymax = np.int64(box[3] + box[1]) / 2160  # 480 * 2  1440 2160
+                xmin = np.int64(box[2] - box[0]) / 1980 # 640      1280  1980
+                ymin = np.int64(box[3] - box[1]) /  1080 # 480      720   1080
                 # print(xmax)
                 # print(ymax)
                 # print(xmin)
@@ -54,24 +54,24 @@ if __name__ == "__main__":
                 tuple1 = (xmax, ymax, xmin, ymin)
                 new_file.write("{:} {:.6f} {:.6f} {:.6f} {:.6f} ".format(str(0), *tuple1) + '\n')
             elif box[-1] == 'red':
-                xmax = np.int64(box[0] + box[2]) / 2560   # 640 * 2  2560
-                ymax = np.int64(box[3] + box[1]) / 1440  # 480 * 2  1440
-                xmin = np.int64(box[2] - box[0]) / 1280 # 640      1280
-                ymin = np.int64(box[3] - box[1]) /  720 # 480      720
+                xmax = np.int64(box[0] + box[2]) / 3840   # 640 * 2  2560 3960
+                ymax = np.int64(box[3] + box[1]) / 2160  # 480 * 2  1440 2160
+                xmin = np.int64(box[2] - box[0]) / 1920 # 640      1280  1980
+                ymin = np.int64(box[3] - box[1]) /  1080 # 480      720   1080
                 tuple1 = (xmax, ymax, xmin, ymin)
                 new_file.write("{:} {:.6f} {:.6f} {:.6f} {:.6f} ".format(str(2), *tuple1) + '\n')
             elif box[-1] == 'blue':
-                xmax = np.int64(box[0] + box[2]) / 2560   # 640 * 2  2560
-                ymax = np.int64(box[3] + box[1]) / 1440  # 480 * 2  1440
-                xmin = np.int64(box[2] - box[0]) / 1280 # 640      1280
-                ymin = np.int64(box[3] - box[1]) /  720 # 480      720
+                xmax = np.int64(box[0] + box[2]) / 3840   # 640 * 2  2560 3960
+                ymax = np.int64(box[3] + box[1]) / 2160  # 480 * 2  1440 2160
+                xmin = np.int64(box[2] - box[0]) / 1920 # 640      1280  1980
+                ymin = np.int64(box[3] - box[1]) /  1080 # 480      720   1080
                 tuple1 = (xmax, ymax, xmin, ymin)
                 new_file.write("{:} {:.6f} {:.6f} {:.6f} {:.6f} ".format(str(1), *tuple1) + '\n')
             else:
-                xmax = np.int64(box[0] + box[2]) / 2560   # 640 * 2  2560
-                ymax = np.int64(box[3] + box[1]) / 1440  # 480 * 2  1440
-                xmin = np.int64(box[2] - box[0]) / 1280 # 640      1280
-                ymin = np.int64(box[3] - box[1]) /  720 # 480      720
+                xmax = np.int64(box[0] + box[2]) / 3840   # 640 * 2  2560 3960
+                ymax = np.int64(box[3] + box[1]) / 2160  # 480 * 2  1440 2160
+                xmin = np.int64(box[2] - box[0]) / 1920 # 640      1280  1980
+                ymin = np.int64(box[3] - box[1]) /  1080 # 480      720   1080
                 tuple1 = (xmax, ymax, xmin, ymin)
                 new_file.write("{:} {:.6f} {:.6f} {:.6f} {:.6f} ".format(str(3), *tuple1) + '\n')
         new_file.close() 
