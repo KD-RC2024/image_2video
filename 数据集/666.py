@@ -11,11 +11,12 @@ import os
     # 绘制txt文件
 if __name__ == "__main__":
     # 图片的路径 /home/yami/image_2video/数据集/exchange/images
-    image_dir = "/home/yami/image_2video/数据集/exchange/images"
+    # /home/yami/AT-Image-Vision/AT-Image-Vision-2/src/yolov5_ros/weights
+    image_dir = "/home/yami/image_2video/数据集/6.16/images"
     # 存放txt的路径
-    label_dir = "/home/yami/image_2video/数据集/exchange/labels/"
-    yolov5_path = "/home/yami/Yolov5_ros-master/src/yolov5_ros/yolov5"
-    weight_path = "/home/yami/Yolov5_ros-master/src/yolov5_ros/weights/weightR/best2_200.pt"
+    label_dir = "/home/yami/image_2video/数据集/6.16/labes/"
+    yolov5_path = "/home/yami/AT-Image-Vision/AT-Image-Vision-2/src/yolov5_ros/yolov5"
+    weight_path = "/home/yami/AT-Image-Vision/AT-Image-Vision-2/src/yolov5_ros/weights/best4_200.pt"
     conf = 0.65
     iou = 0.7
     model = torch.hub.load(yolov5_path, 'custom', path = weight_path, source = 'local')
@@ -25,54 +26,57 @@ if __name__ == "__main__":
 
     list_image = os.listdir(image_dir)
 
-    for idx in range(1, 1001):
+    for idx in range(3501, 4520):
         join_path = image_dir + "/" + str(idx) + ".jpg"
-        color_image = cv2.imread(join_path)
-        color_image = cv2.cvtColor(color_image, cv2.COLOR_BGR2RGB)
-        results = model(color_image)
-        boxs = results.pandas().xyxy[0].values
-        newfile = label_dir +str(idx) + ".txt"
-        new_file = open(newfile,"w")
-        for box in boxs: 
-        # boundingBox = BoundingBox()
-        # boundingBox.probability =np.float64(box[4])
-        # boundingBox.xmin = np.int64(box[0])
-        # boundingBox.ymin = np.int64(box[1])
-        # boundingBox.xmax = np.int64(box[2])
-        # boundingBox.ymax = np.int64(box[3])
-        # boundingBox.Class = box[-1]
-        # out_file.write("{:} {:.6f} {:.6f} {:.6f} {:.6f} ".format(cls_id, *box) + '\n')
-            if box[-1] == 'basket':
-                xmax = np.int64(box[0] + box[2]) / 3840   # 640 * 2  2560 3960
-                ymax = np.int64(box[3] + box[1]) / 2160  # 480 * 2  1440 2160
-                xmin = np.int64(box[2] - box[0]) / 1980 # 640      1280  1980
-                ymin = np.int64(box[3] - box[1]) /  1080 # 480      720   1080
-                # print(xmax)
-                # print(ymax)
-                # print(xmin)
-                # print(ymin)
-                tuple1 = (xmax, ymax, xmin, ymin)
-                new_file.write("{:} {:.6f} {:.6f} {:.6f} {:.6f} ".format(str(0), *tuple1) + '\n')
-            elif box[-1] == 'red':
-                xmax = np.int64(box[0] + box[2]) / 3840   # 640 * 2  2560 3960
-                ymax = np.int64(box[3] + box[1]) / 2160  # 480 * 2  1440 2160
-                xmin = np.int64(box[2] - box[0]) / 1920 # 640      1280  1980
-                ymin = np.int64(box[3] - box[1]) /  1080 # 480      720   1080
-                tuple1 = (xmax, ymax, xmin, ymin)
-                new_file.write("{:} {:.6f} {:.6f} {:.6f} {:.6f} ".format(str(2), *tuple1) + '\n')
-            elif box[-1] == 'blue':
-                xmax = np.int64(box[0] + box[2]) / 3840   # 640 * 2  2560 3960
-                ymax = np.int64(box[3] + box[1]) / 2160  # 480 * 2  1440 2160
-                xmin = np.int64(box[2] - box[0]) / 1920 # 640      1280  1980
-                ymin = np.int64(box[3] - box[1]) /  1080 # 480      720   1080
-                tuple1 = (xmax, ymax, xmin, ymin)
-                new_file.write("{:} {:.6f} {:.6f} {:.6f} {:.6f} ".format(str(1), *tuple1) + '\n')
-            else:
-                xmax = np.int64(box[0] + box[2]) / 3840   # 640 * 2  2560 3960
-                ymax = np.int64(box[3] + box[1]) / 2160  # 480 * 2  1440 2160
-                xmin = np.int64(box[2] - box[0]) / 1920 # 640      1280  1980
-                ymin = np.int64(box[3] - box[1]) /  1080 # 480      720   1080
-                tuple1 = (xmax, ymax, xmin, ymin)
-                new_file.write("{:} {:.6f} {:.6f} {:.6f} {:.6f} ".format(str(3), *tuple1) + '\n')
-        new_file.close() 
-        print("完成" + str(idx))
+        if not os.path.exists(join_path):
+            continue
+        else:
+            color_image = cv2.imread(join_path)
+            color_image = cv2.cvtColor(color_image, cv2.COLOR_BGR2RGB)
+            results = model(color_image)
+            boxs = results.pandas().xyxy[0].values
+            newfile = label_dir +str(idx) + ".txt"
+            new_file = open(newfile,"w")
+            for box in boxs: 
+            # boundingBox = BoundingBox()
+            # boundingBox.probability =np.float64(box[4])
+            # boundingBox.xmin = np.int64(box[0])
+            # boundingBox.ymin = np.int64(box[1])
+            # boundingBox.xmax = np.int64(box[2])
+            # boundingBox.ymax = np.int64(box[3])
+            # boundingBox.Class = box[-1]
+            # out_file.write("{:} {:.6f} {:.6f} {:.6f} {:.6f} ".format(cls_id, *box) + '\n')
+                if box[-1] == 'basket':
+                    xmax = np.int64(box[0] + box[2]) / 2560   # 640 * 2  2560 3960
+                    ymax = np.int64(box[3] + box[1]) / 1440  # 480 * 2  1440 2160
+                    xmin = np.int64(box[2] - box[0]) / 1280 # 640      1280  1980
+                    ymin = np.int64(box[3] - box[1]) /  720 # 480      720   1080
+                    # print(xmax)
+                    # print(ymax)
+                    # print(xmin)
+                    # print(ymin)
+                    tuple1 = (xmax, ymax, xmin, ymin)
+                    new_file.write("{:} {:.6f} {:.6f} {:.6f} {:.6f} ".format(str(0), *tuple1) + '\n')
+                elif box[-1] == 'red':
+                    xmax = np.int64(box[0] + box[2]) / 2560   # 640 * 2  2560 3960
+                    ymax = np.int64(box[3] + box[1]) / 1440  # 480 * 2  1440 2160
+                    xmin = np.int64(box[2] - box[0]) / 1280 # 640      1280  1980
+                    ymin = np.int64(box[3] - box[1]) /  720 # 480      720   1080
+                    tuple1 = (xmax, ymax, xmin, ymin)
+                    new_file.write("{:} {:.6f} {:.6f} {:.6f} {:.6f} ".format(str(2), *tuple1) + '\n')
+                elif box[-1] == 'blue':
+                    xmax = np.int64(box[0] + box[2]) / 2560   # 640 * 2  2560 3960
+                    ymax = np.int64(box[3] + box[1]) / 1440  # 480 * 2  1440 2160
+                    xmin = np.int64(box[2] - box[0]) / 1280 # 640      1280  1980
+                    ymin = np.int64(box[3] - box[1]) /  720 # 480      720   1080
+                    tuple1 = (xmax, ymax, xmin, ymin)
+                    new_file.write("{:} {:.6f} {:.6f} {:.6f} {:.6f} ".format(str(1), *tuple1) + '\n')
+                else:
+                    xmax = np.int64(box[0] + box[2]) / 2560   # 640 * 2  2560 3960
+                    ymax = np.int64(box[3] + box[1]) / 1440  # 480 * 2  1440 2160
+                    xmin = np.int64(box[2] - box[0]) / 1280 # 640      1280  1980
+                    ymin = np.int64(box[3] - box[1]) /  720 # 480      720   1080
+                    tuple1 = (xmax, ymax, xmin, ymin)
+                    new_file.write("{:} {:.6f} {:.6f} {:.6f} {:.6f} ".format(str(3), *tuple1) + '\n')
+            new_file.close() 
+            print("完成" + str(idx))
